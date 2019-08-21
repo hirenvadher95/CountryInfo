@@ -21,7 +21,6 @@ class _HomeState extends State<Home> {
   getData() async {
     var response = await http.get(url);
     var decodedData = jsonDecode(response.body);
-    print(response);
   }
 
   @override
