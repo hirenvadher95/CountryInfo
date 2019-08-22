@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'country.dart';
+import 'networklayer.dart';
+import 'list.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -18,7 +21,7 @@ class _HomeState extends State<Home> {
     getData();
   }
 
-  getData() async {
+  Future<String> getData() async {
     var response = await http.get(url);
     var decodedData = jsonDecode(response.body);
   }
@@ -26,10 +29,19 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Countries'),
-          backgroundColor: Colors.cyan), //*! Constant ma nakhvano color */
-      drawer: Drawer(), //* Code of Drowe
-    );
+        appBar: AppBar(
+            title: Text('Countries'),
+            backgroundColor: Colors.cyan), //*! Constant ma nakhvano color */
+        drawer: Drawer(), //* Code of Drowe
+        body: FutureBuilder<List<Country>>(
+          future: fetchCountry(new http.Client()),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+
+            return snapshot.hasData
+                ? new CountyList(country: snapshot.data)
+                : new Center(child: new CircularProgressIndicator());
+          },
+        ));
   }
 }
