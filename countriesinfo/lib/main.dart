@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'logicpart.dart';
+import 'home.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Country Information',
-      theme: ThemeData(brightness: Brightness.dark),
+      title: "Country Info ",
       home: Home(),
     );
   }
