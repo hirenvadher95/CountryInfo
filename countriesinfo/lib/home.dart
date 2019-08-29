@@ -3,6 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'list_data.dart';
+
+List<String> countryName = List<String>();
+List<String> flag = List<String>();
 
 class Home extends StatefulWidget {
   @override
@@ -11,8 +15,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var url = 'https://restcountries.eu/rest/v2/all';
-  List<String> countryName = List<String>();
-  List<String> flag = List<String>();
 
   @override
   void initState() {
@@ -25,9 +27,33 @@ class _HomeState extends State<Home> {
     var decodedData = jsonDecode(res.body);
 
     setState(() {
-      for (int i = 0; i < 250; i++) {
-        countryName.add(decodedData[i]['name'].toString());
-        flag.add(decodedData[i]['flag'].toString());
+      for (int i = 0; i < 250; i++) {// some of svg flag wont render in flutter so skip it 
+        if (i != 4 &&
+            i != 10 &&
+            i != 31 &&
+            i != 32 &&
+            i != 39 &&
+            i != 44 &&
+            i != 64 &&
+            i != 73 &&
+            i != 89 &&
+            i != 97 &&
+            i != 99 &&
+            i != 156 &&
+            i != 167 &&
+            i != 168 &&
+            i != 199 &&
+            i != 206 &&
+            i != 208 &&
+            i != 209 &&
+            i != 213 &&
+            i != 221 &&
+            i != 234 &&
+            i != 249) {
+          countryName.add(decodedData[i]['name'].toString());
+
+          flag.add(decodedData[i]['flag'].toString());
+        }
       }
     });
   }
@@ -40,7 +66,7 @@ class _HomeState extends State<Home> {
         backgroundColorEnd: Colors.indigo,
       ),
       body: GridView.builder(
-        itemCount: countryName.isEmpty ? 0 : 250,
+        itemCount: countryName.isEmpty ? 0 : 228,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
@@ -55,7 +81,9 @@ class _HomeState extends State<Home> {
                         flag[index],
                         height: 100,
                         width: 100,
+                        allowDrawingOutsideViewBox: false,
                         fit: BoxFit.fill,
+                        alignment: Alignment.center,
                         placeholderBuilder: (BuildContext context) =>
                             new Container(
                                 padding: const EdgeInsets.all(30.0),
