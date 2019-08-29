@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     var decodedData = jsonDecode(res.body);
 
     setState(() {
-      for (int i = 0; i < 250; i++) {// some of svg flag wont render in flutter so skip it 
+      for (int i = 0; i < 250; i++) {// some of svg flag wont render in flutter so skip it
         if (i != 4 &&
             i != 10 &&
             i != 31 &&
