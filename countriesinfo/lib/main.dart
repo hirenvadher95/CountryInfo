@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Country Info ",
       home: Home(),
-      theme: ThemeData.dark(),
+      theme: ThemeData(brightness: Brightness.dark),
     );
   }
 }

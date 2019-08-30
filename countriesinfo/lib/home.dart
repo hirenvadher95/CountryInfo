@@ -3,10 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'list_data.dart';
+import 'detail_page.dart';
 
 List<String> countryName = List<String>();
 List<String> flag = List<String>();
+List<String> callingCodes = List<String>();
+List<String> capital = List<String>();
+List<String> region = List<String>();
+List<String> population = List<String>();
+List<String> timezones = List<String>();
+List<String> nativeName = List<String>();
 
 class Home extends StatefulWidget {
   @override
@@ -27,7 +33,8 @@ class _HomeState extends State<Home> {
     var decodedData = jsonDecode(res.body);
 
     setState(() {
-      for (int i = 0; i < 250; i++) {// some of svg flag wont render in flutter so skip it
+      for (int i = 0; i < 250; i++) {
+        // some of svg flag wont render in flutter so skip it
         if (i != 4 &&
             i != 10 &&
             i != 31 &&
@@ -51,8 +58,13 @@ class _HomeState extends State<Home> {
             i != 234 &&
             i != 249) {
           countryName.add(decodedData[i]['name'].toString());
-
           flag.add(decodedData[i]['flag'].toString());
+          callingCodes.add(decodedData[i]['callingCodes'].toString());
+          capital.add(decodedData[i]['capital'].toString());
+          region.add(decodedData[i]['region'].toString());
+          population.add(decodedData[i]['population'].toString());
+          timezones.add(decodedData[i]['timezones'].toString());
+          nativeName.add(decodedData[i]['nativeName'].toString());
         }
       }
     });
@@ -72,11 +84,17 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return Center(
             child: Card(
-              child: Column(
-                children: <Widget>[
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DetailPage()));
+                },
+                disabledColor: Theme.of(context).backgroundColor,
+                color: Theme.of(context).backgroundColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
                       child: SvgPicture.network(
                         flag[index],
                         height: 100,
@@ -90,14 +108,14 @@ class _HomeState extends State<Home> {
                                 child: const CircularProgressIndicator()),
                       ),
                     ),
-                  ),
-                  Text(
-                    countryName[index],
-                    textAlign: TextAlign.end,
-                    softWrap: true,
-                    textDirection: TextDirection.ltr,
-                  )
-                ],
+                    Text(
+                      countryName[index],
+                      textAlign: TextAlign.end,
+                      softWrap: true,
+                      textDirection: TextDirection.ltr,
+                    )
+                  ],
+                ),
               ),
             ),
           );
