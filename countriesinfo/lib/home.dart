@@ -84,37 +84,42 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return Center(
             child: Card(
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailPage()));
-                },
-                disabledColor: Theme.of(context).backgroundColor,
-                color: Theme.of(context).backgroundColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: SvgPicture.network(
-                        flag[index],
-                        height: 100,
-                        width: 100,
-                        allowDrawingOutsideViewBox: false,
-                        fit: BoxFit.fill,
-                        alignment: Alignment.center,
-                        placeholderBuilder: (BuildContext context) =>
-                            new Container(
-                                padding: const EdgeInsets.all(30.0),
-                                child: const CircularProgressIndicator()),
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DetailPage()));
+                    sendIndex(index);
+                  },
+                  disabledColor: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).backgroundColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Center(
+                        child: SvgPicture.network(
+                          flag[index],
+                          height: 100,
+                          width: 100,
+                          allowDrawingOutsideViewBox: false,
+                          fit: BoxFit.fill,
+                          alignment: Alignment.center,
+                          placeholderBuilder: (BuildContext context) =>
+                              new Container(
+                                  padding: const EdgeInsets.all(30.0),
+                                  child: const CircularProgressIndicator()),
+                        ),
                       ),
-                    ),
-                    Text(
-                      countryName[index],
-                      textAlign: TextAlign.end,
-                      softWrap: true,
-                      textDirection: TextDirection.ltr,
-                    )
-                  ],
+                      Text(
+                        countryName[index],
+                        textAlign: TextAlign.end,
+                        softWrap: true,
+                        textDirection: TextDirection.ltr,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
