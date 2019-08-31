@@ -5,13 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'detail_page.dart';
 
+
 List<String> countryName = List<String>();
 List<String> flag = List<String>();
 List<String> callingCodes = List<String>();
 List<String> capital = List<String>();
 List<String> region = List<String>();
 List<String> population = List<String>();
-List<String> timezones = List<String>();
+
 List<String> nativeName = List<String>();
 
 class Home extends StatefulWidget {
@@ -63,7 +64,7 @@ class _HomeState extends State<Home> {
           capital.add(decodedData[i]['capital'].toString());
           region.add(decodedData[i]['region'].toString());
           population.add(decodedData[i]['population'].toString());
-          timezones.add(decodedData[i]['timezones'].toString());
+
           nativeName.add(decodedData[i]['nativeName'].toString());
         }
       }
@@ -112,6 +113,7 @@ class _HomeState extends State<Home> {
                                   child: const CircularProgressIndicator()),
                         ),
                       ),
+                      SizedBox(height: 15,),
                       Text(
                         countryName[index],
                         textAlign: TextAlign.end,
