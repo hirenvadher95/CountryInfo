@@ -85,6 +85,8 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return Center(
             child: Card(
+
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
               child: Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(8)),

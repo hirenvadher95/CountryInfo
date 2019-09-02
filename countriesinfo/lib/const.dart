@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'const_color.dart';
 
-const ktextStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 23,color: Colors.black87,fontFamily:'Montserrat', );
+const ktextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 28,
+  color: Colors.black87,
+  fontFamily: 'Montserrat',
+);
 
 const LinearGradient SIGNUP_BACKGROUND = LinearGradient(
   begin: FractionalOffset(0.0, 0.4), end: FractionalOffset(0.9, 0.7),
