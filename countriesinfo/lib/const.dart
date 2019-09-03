@@ -3,8 +3,8 @@ import 'const_color.dart';
 
 const ktextStyle = TextStyle(
   fontWeight: FontWeight.bold,
-  fontSize: 28,
-  color: Colors.black87,
+  fontSize: 26,
+  color: Colors.amberAccent,
   fontFamily: 'Montserrat',
 );
 

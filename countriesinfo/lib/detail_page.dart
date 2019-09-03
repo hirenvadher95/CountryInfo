@@ -6,7 +6,6 @@ import 'const.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-
 int i;
 
 void sendIndex(int index) {
@@ -35,22 +34,27 @@ class _DetailPageState extends State<DetailPage> {
           physics: BouncingScrollPhysics(),
           children: <Widget>[
             Center(
-              child: ColorizeAnimatedTextKit(
-                  text: [
-                    "$cName",
-                  ],
-                  textStyle: TextStyle(fontSize: 50.0, fontFamily: "Horizon"),
-                  colors: [
-                    Colors.purple,
-                    Colors.blue,
-                    Colors.yellow,
-                    Colors.red,
-                  ],
-                  textAlign: TextAlign.center,
-                  alignment:
-                      AlignmentDirectional.topStart // or Alignment.topLeft
-                  ),
-            ),SizedBox(height: 40,),
+              child: Container(
+                child: ColorizeAnimatedTextKit(
+                    text: [
+                      "$cName",
+                    ],
+                    textStyle: TextStyle(fontSize: 30.0, fontFamily: "Horizon"),
+                    colors: [
+                      Colors.purple,
+                      Colors.blue,
+                      Colors.yellow,
+                      Colors.red,
+                    ],
+                    textAlign: TextAlign.center,
+                    alignment:
+                        AlignmentDirectional.topStart // or Alignment.topLeft
+                    ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             CustomWidget(field: "Capital : ", valueofFiled: capital[i]),
             CustomWidget(field: "Region : ", valueofFiled: region[i]),
             CustomWidget(field: "Population : ", valueofFiled: population[i]),
@@ -81,21 +85,23 @@ class CustomWidget extends StatelessWidget {
         gradient: Gradients.hotLinear,
         shadowColor: Gradients.tameer.colors.last.withOpacity(0.25),
         elevation: 8,
-        
-        child: Row(
-          children: <Widget>[
-            Text(
-              field,
-              style: ktextStyle,
-            ),
-            Expanded(
-              child: Text(
-                valueofFiled,
+        child: Card(
+          margin: EdgeInsets.all(5),
+          child: Row(
+            children: <Widget>[
+              Text(
+                field,
                 style: ktextStyle,
-                softWrap: true,
               ),
-            ),
-          ],
+              Expanded(
+                child: Text(
+                  valueofFiled,
+                  style: ktextStyle,
+                  softWrap: true,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
