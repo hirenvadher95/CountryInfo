@@ -1,4 +1,4 @@
-name: countriesinfo
+name: apk
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -19,17 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+2
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  flutter_svg: ^0.14.0
-  gradient_app_bar: ^0.0.1
-  auto_size_text: ^2.1.0
-  gradient_widgets: ^0.5.0
-  animated_text_kit: ^1.3.1
-
-
-
-
 
 dev_dependencies:
   flutter_test:
@@ -63,19 +56,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
-        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
-          weight: 400
-#        - asset: assets/fonts/montserrat/Montserrat-Italic.ttf
-#          style: italic
-        - asset: assets/fonts/montserrat/Montserrat-Light.ttf
-          weight: 200
-        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
-          weight: 500
-        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

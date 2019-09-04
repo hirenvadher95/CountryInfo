@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'home.dart';
 import 'const.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 int i;
 
@@ -29,10 +30,19 @@ class _DetailPageState extends State<DetailPage> {
         backgroundColorEnd: Colors.indigo,
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 64.0),
+        padding: EdgeInsets.only(top: 32.0),
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
+            Hero(
+              tag:'logo$i',
+              child: SvgPicture.network(
+                flag[i],
+                height: 200,
+                width: 100,
+              ),
+            ),
+            SizedBox(height: 10),
             Center(
               child: Container(
                 child: ColorizeAnimatedTextKit(
@@ -48,13 +58,11 @@ class _DetailPageState extends State<DetailPage> {
                     ],
                     textAlign: TextAlign.center,
                     alignment:
-                        AlignmentDirectional.topStart // or Alignment.topLeft
+                        AlignmentDirectional.center // or Alignment.topLeft
                     ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             CustomWidget(field: "Capital : ", valueofFiled: capital[i]),
             CustomWidget(field: "Region : ", valueofFiled: region[i]),
             CustomWidget(field: "Population : ", valueofFiled: population[i]),
@@ -79,7 +87,7 @@ class CustomWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: GradientCard(
-        margin: EdgeInsets.all(8),
+        margin: EdgeInsets.all(0),
         semanticContainer: true,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         gradient: Gradients.hotLinear,
@@ -94,10 +102,11 @@ class CustomWidget extends StatelessWidget {
                 style: ktextStyle,
               ),
               Expanded(
-                child: Text(
+                child: AutoSizeText(
                   valueofFiled,
                   style: ktextStyle,
                   softWrap: true,
+                  maxLines: 1,
                 ),
               ),
             ],

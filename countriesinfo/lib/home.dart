@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'detail_page.dart';
 
-
 List<String> countryName = List<String>();
 List<String> flag = List<String>();
 List<String> callingCodes = List<String>();
@@ -85,8 +84,8 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return Center(
             child: Card(
-
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
               child: Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(8)),
@@ -102,20 +101,25 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Center(
-                        child: SvgPicture.network(
-                          flag[index],
-                          height: 100,
-                          width: 100,
-                          allowDrawingOutsideViewBox: false,
-                          fit: BoxFit.fill,
-                          alignment: Alignment.center,
-                          placeholderBuilder: (BuildContext context) =>
-                              new Container(
-                                  padding: const EdgeInsets.all(30.0),
-                                  child: const CircularProgressIndicator()),
+                        child: Hero(
+                          tag: 'logo$index',
+                          child: SvgPicture.network(
+                            flag[index],
+                            height: 100,
+                            width: 100,
+                            allowDrawingOutsideViewBox: false,
+                            fit: BoxFit.fill,
+                            alignment: Alignment.center,
+                            placeholderBuilder: (BuildContext context) =>
+                                new Container(
+                                    padding: const EdgeInsets.all(30.0),
+                                    child: const CircularProgressIndicator()),
+                          ),
                         ),
                       ),
-                      SizedBox(height: 15,),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Text(
                         countryName[index],
                         textAlign: TextAlign.end,
