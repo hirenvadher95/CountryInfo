@@ -30,3 +30,4 @@ const LinearGradient SIGNUP_CIRCLE_BUTTON_BACKGROUND = LinearGradient(
   stops: [0.4, 1],
   colors: [Colors.black, Colors.black54],
 );
+

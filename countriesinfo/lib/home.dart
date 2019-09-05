@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'detail_page.dart';
+import 'package:countriesinfo/const.dart';
+import 'package:countriesinfo/privacy.dart';
 
 List<String> countryName = List<String>();
 List<String> flag = List<String>();
@@ -63,7 +65,6 @@ class _HomeState extends State<Home> {
           capital.add(decodedData[i]['capital'].toString());
           region.add(decodedData[i]['region'].toString());
           population.add(decodedData[i]['population'].toString());
-
           nativeName.add(decodedData[i]['nativeName'].toString());
         }
       }
@@ -72,66 +73,101 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: GradientAppBar(
-        title: Text('CountryInfo'),
-        backgroundColorStart: Colors.cyan,
-        backgroundColorEnd: Colors.indigo,
-      ),
-      body: GridView.builder(
-        itemCount: countryName.isEmpty ? 0 : 228,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          return Center(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6)),
-              child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => DetailPage()));
-                    sendIndex(index);
-                  },
-                  disabledColor: Theme.of(context).backgroundColor,
-                  color: Theme.of(context).backgroundColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                        child: Hero(
-                          tag: 'logo$index',
-                          child: SvgPicture.network(
-                            flag[index],
-                            height: 100,
-                            width: 100,
-                            allowDrawingOutsideViewBox: false,
-                            fit: BoxFit.fill,
-                            alignment: Alignment.center,
-                            placeholderBuilder: (BuildContext context) =>
-                                new Container(
-                                    padding: const EdgeInsets.all(30.0),
-                                    child: const CircularProgressIndicator()),
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Image.asset(
+                  'assets/images/logoc.png',
+                  fit: BoxFit.contain,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  gradient: SIGNUP_CARD_BACKGROUND,
+                ),
+              ),
+              ListTile(
+                title: Text('Privacy Policy'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PrivacyPolicy()));
+                },
+              ),
+              ListTile(
+                title: Text(''),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
+          ),
+        ),
+        appBar: GradientAppBar(
+          title: Text('CountryInfo'),
+          backgroundColorStart: Colors.cyan,
+          backgroundColorEnd: Colors.indigo,
+        ),
+        body: GridView.builder(
+          itemCount: countryName.isEmpty ? 0 : 228,
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (context, index) {
+            return Center(
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6)),
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailPage()));
+                      sendIndex(index);
+                    },
+                    disabledColor: Theme.of(context).backgroundColor,
+                    color: Theme.of(context).backgroundColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: Hero(
+                            tag: 'logo$index',
+                            child: SvgPicture.network(
+                              flag[index],
+                              height: 100,
+                              width: 100,
+                              allowDrawingOutsideViewBox: false,
+                              fit: BoxFit.fill,
+                              alignment: Alignment.center,
+                              placeholderBuilder: (BuildContext context) =>
+                                  new Container(
+                                      padding: const EdgeInsets.all(30.0),
+                                      child: const CircularProgressIndicator()),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        countryName[index],
-                        textAlign: TextAlign.end,
-                        softWrap: true,
-                        textDirection: TextDirection.ltr,
-                      )
-                    ],
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          countryName[index],
+                          textAlign: TextAlign.end,
+                          softWrap: true,
+                          textDirection: TextDirection.ltr,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
-      ));
+            );
+          },
+        ),
+      );
 }
