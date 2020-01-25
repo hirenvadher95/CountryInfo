@@ -150,7 +150,7 @@ class _HomeState extends State<Home> {
                     return Center(
                       child: Card(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6)),
+                            borderRadius: BorderRadius.circular(8)),
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8)),
